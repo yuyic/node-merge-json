@@ -1,0 +1,29 @@
+{
+  "name": "node-merge-json",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "repository": "git@github.com:yuyic/node-merge-json.git",
+  "author": "Eric Yu <eric.yu@meetsocial.cn>",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "peerDependencies": {
+    "fs-extra": "^9.0.1",
+    "lodash": "^4.17.19"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
+    "@types/lodash": "^4.14.157",
+    "fs-extra": "^9.0.1",
+    "lodash": "^4.17.19"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "build":"tsc",
+    "dev":"tsc --watch"
+  }
+}
