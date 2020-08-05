@@ -52,9 +52,9 @@ export default async function mergeJson(
     );
 
     if (deepMerge) {
-      _.merge(json, parsedSources);
+      _.merge(json, ...parsedSources);
     } else {
-      _.assign(json, parsedSources);
+      _.assign(json, ...parsedSources);
     }
 
     if(typeof output==="string" && path.isAbsolute(output)){

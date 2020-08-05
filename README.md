@@ -8,14 +8,15 @@
 const mergeJson = require("node-merge-json");
 
 mergeJson({
-    target:__dirname + "a.json",
-    dest: __dirname + "output.json",
+    dest: __dirname + "/output.json",
     deepMerge: true,
     sources: [
-        __dirname + "b.json",
-        __dirname + "c.json",
-        __dirname + "d.json"
+        __dirname + "/a.json",
+        __dirname + "/b.json",
+        __dirname + "/c.json"
     ]
-})
+}).then(
+    mergedJson => console.log(mergedJson)
+)
 
 ```
