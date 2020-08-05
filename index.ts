@@ -1,5 +1,5 @@
 import fse from "fs-extra";
-import _ from "lodash";
+import _, {MergeWithCustomizer} from "lodash";
 import path from "path"
 
 async function readJsonFile(path: string) {
@@ -20,6 +20,7 @@ interface JsonArray extends Array<AnyJson> {}
 export interface Options{
     output?: string;
     deepMerge?: boolean;
+    mergeWith?: MergeWithCustomizer;
     sources: (JsonArray | JsonMap | string)[]
 }
 
@@ -35,8 +36,7 @@ const parse = async (target: JsonArray | JsonMap | string) => {
 export default async function mergeJson(
     opts: Options
 ) {
-
-    const { output, deepMerge, sources } = opts;
+    const { output, deepMerge, sources, mergeWith } = opts;
 
     if(sources.length===0){
       console.warn(`[node-merge-json] sources length should >0!`);
@@ -52,7 +52,12 @@ export default async function mergeJson(
     );
 
     if (deepMerge) {
-      _.merge(json, ...parsedSources);
+      if(mergeWith){
+        _.mergeWith(json, ...parsedSources, mergeWith);
+      }
+      else{
+        _.merge(json, ...parsedSources);
+      }
     } else {
       _.assign(json, ...parsedSources);
     }
